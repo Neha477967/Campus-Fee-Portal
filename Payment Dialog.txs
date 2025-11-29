@@ -1,0 +1,26 @@
+import { useState } from 'react';
+import { CreditCard, DollarSign, AlertCircle } from 'lucide-react';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './ui/dialog';
+import { Button } from './ui/button';
+import { Input } from './ui/input';
+import { Label } from './ui/label';
+import { RadioGroup, RadioGroupItem } from './ui/radio-group';
+import { Alert, AlertDescription } from './ui/alert';
+
+interface PaymentDialogProps {
+  open: boolean;
+  onClose: () => void;
+  onPaymentComplete: (amount: number) => void;
+  maxAmount: number;
+  studentEmail: string;
+}
+
+export function PaymentDialog({ open, onClose, onPaymentComplete, maxAmount, studentEmail }: PaymentDialogProps) {
+  const [amount, setAmount] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState('card');
+  const [cardNumber, setCardNumber] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
+  const [cvv, setCvv] = useState('');
+  const [cardName, setCardName] = useState('');
+  const [processing, setProcessing] = useState(false);
+  const [error, setError] = useState('');
